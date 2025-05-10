@@ -1,0 +1,278 @@
+:root {
+	--primary-color: hsl(4, 100%, 67%);
+	--blue: hsl(235, 18%, 26%);
+	--dark-blue: hsl(234, 29%, 20%);
+	--grey: hsl(0, 0%, 58%);
+	--white: hsl(0, 0%, 100%);
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+button,
+input {
+	font-size: inherit;
+	font-family: inherit;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.6rem;
+	background-color: var(--blue);
+	color: var(--dark-blue);
+
+	@media (width >= 768px) {
+		padding: 4.5em 0;
+	}
+}
+
+button {
+	position: relative;
+	width: 100%;
+	margin-top: 1em;
+	padding: 1.3em;
+	border-radius: 8px;
+	border: none;
+	background-color: var(--dark-blue);
+	color: var(--white);
+	font-weight: 700;
+	cursor: pointer;
+	overflow: hidden;
+	z-index: 200;
+
+	&::after {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-image: linear-gradient(to right, #7b4397 0%, #dc2430 51%, #7b4397 100%);
+		transition: transform 0.3s;
+		transform: scaleX(0);
+		transform-origin: right;
+		content: '';
+		z-index: -1;
+	}
+
+	&:hover::after {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
+
+	&:focus {
+		outline: none;
+		border: 1px solid var(--primary-color)
+	}
+}
+
+.btn-grad {
+	background-image: linear-gradient(to right, #7b4397 0%, #dc2430 51%, #7b4397 100%);
+}
+.btn-grad {
+	margin: 10px;
+	padding: 15px 45px;
+	text-align: center;
+	text-transform: uppercase;
+	transition: 0.5s;
+	background-size: 200% auto;
+	color: white;
+	box-shadow: 0 0 20px #eee;
+	border-radius: 10px;
+	display: block;
+}
+
+.btn-grad:hover {
+	background-position: right center; /* change the direction of the change here */
+	color: #fff;
+	text-decoration: none;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.newsletter {
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	width: 100%;
+	background-color: var(--white);
+
+	&__article {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
+
+	&__img {
+		width: 100%;
+		height: auto;
+	}
+
+	&__content {
+		margin: 2em 1.5em 0 1.5em;
+	}
+
+	&__title,
+	&__text {
+		margin-bottom: 0.5em;
+	}
+
+	&__title {
+		font-size: clamp(4rem, calc(4.5vw + 1rem), 6.4rem);
+		font-weight: 700;
+	}
+
+	&__list {
+		list-style: none;
+	}
+
+	&__list-item {
+		display: flex;
+		gap: 1em;
+		margin-top: 1.5em;
+
+		&::before {
+			content: '';
+			display: inline-block;
+			background-image: url('../assets/images/icon-list.svg');
+			background-size: contain;
+			background-repeat: no-repeat;
+			width: 22px;
+			height: 22px;
+		}
+	}
+
+	&__form {
+		&-box {
+			position: relative;
+		}
+		label {
+			color: var(--dark-blue);
+			font-weight: 700;
+			font-size: 1.2rem;
+		}
+
+		input {
+			width: 100%;
+			padding: 1em;
+			border-radius: 8px;
+			border: 1px solid var(--grey);
+			margin: 0.5em 0;
+		}
+		.input-error {
+			background-color: hsla(4, 100%, 67%, 0.247);
+			border: 1px solid var(--primary-color);
+			&::placeholder {
+				color: var(--primary-color);
+			}
+		}
+
+		&-btn {
+			width: 100%;
+			margin-top: 1em;
+			padding: 1.3em;
+			border-radius: 8px;
+			border: none;
+			background-color: var(--dark-blue);
+			color: var(--white);
+			font-weight: 700;
+			cursor: pointer;
+			margin-bottom: 2em;
+		}
+
+		&-error {
+			display: block;
+			position: absolute;
+			right: 0px;
+			top: 4px;
+			color: var(--primary-color);
+			font-size: 1.2rem;
+		}
+	}
+
+	&__popup {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		height: 100vh;
+		width: 100%;
+		gap: 2em;
+		background-color: var(--white);
+		padding: 9em 1em 3em 1em;
+
+		&-btn {
+			margin-top: auto;
+		}
+
+		@media (width >= 1024px) {
+			height: auto;
+			max-width: 500px;
+
+			padding: 2em 3em 0em 3em;
+
+			&-text {
+				margin: 0.5em 0;
+			}
+
+			&-title {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	@media (width >= 768px) {
+		max-width: 600px;
+		border-radius: 25px;
+		padding: 1em;
+
+		&__img {
+			border-radius: 25px;
+			padding: 1em;
+		}
+
+		&__content {
+			padding: 0;
+		}
+
+		&__list {
+			margin-bottom: 1.5em;
+		}
+	}
+
+	@media (width >= 1024px) {
+		max-width: 880px;
+		width: auto;
+
+		&__article {
+			flex-direction: row-reverse;
+		}
+
+		&__title {
+			margin-top: 0.25em;
+		}
+
+		&__form {
+			margin-top: 2em;
+		}
+
+		&__img {
+			padding: 0;
+		}
+	}
+}
+
+.btn-grad:hover {
+}
